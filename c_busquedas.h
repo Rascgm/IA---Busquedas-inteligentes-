@@ -22,6 +22,7 @@ class C_busquedas{
 
     C_busquedas(void);
     ~C_busquedas(void);
+    void menu(void);
 
 
   private:
@@ -29,6 +30,8 @@ class C_busquedas{
     void b_adya(void);
     void b_costos(void);
     void b_heuristica(void);
+
+    void BFS(void);
 
 
    // METODOS TESTS

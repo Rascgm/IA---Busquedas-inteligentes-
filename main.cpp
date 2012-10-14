@@ -5,6 +5,8 @@ int main()
 
     C_busquedas Prueba;
 
+    Prueba.menu();
+
 
     return 0;
 }
