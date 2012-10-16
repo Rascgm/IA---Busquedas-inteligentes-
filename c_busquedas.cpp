@@ -287,6 +287,42 @@ void C_busquedas::menu(void){
 
 };
 
+bool C_busquedas::comprobar_camino(int* vect, int actual,int hijo, int inicial){
+
+  bool resultado = false;
+
+  int aux = actual;
+
+  if ( hijo != inicial ){
+
+    while ( ( resultado == false ) && ( aux != inicial ) ){
+
+      if ( aux == hijo ){
+
+        resultado = true;
+
+      } else {
+
+        aux = vect[aux];
+
+      }
+
+    }
+
+
+  } else {
+
+    resultado = true;
+
+  }
+
+
+  return resultado;
+
+
+};
+
+
 
 
 void C_busquedas::BFS(void){
@@ -296,6 +332,9 @@ void C_busquedas::BFS(void){
   int cant_cola = 0;
   int aux = 0;
   bool terminado = false;
+
+  int cant_analizados = 0;
+  int cant_generados = 0;
 
   int i = 0;
 
@@ -314,7 +353,7 @@ void C_busquedas::BFS(void){
   int cola[cant_nodos];
 
 
-  for ( int i = 0; i < cant_nodos; i++ ){
+  for ( unsigned int i = 0; i < cant_nodos; i++ ){
 
     visitados[i] = false;
     padre[i] = -1;
@@ -332,6 +371,7 @@ void C_busquedas::BFS(void){
     i = 0;
 
     aux = cola[0];
+    cant_analizados++;
 
     if ( aux == last ){
 
@@ -352,11 +392,13 @@ void C_busquedas::BFS(void){
 
       cola[i] = -1;
 
-      for ( int j = 0; j < cant_nodos; j++ ){
+      for ( unsigned int j = 0; j < cant_nodos; j++ ){
 
         if ( m_adyacencia[aux][j] != 0 ){
 
           if ( visitados[j] == false ){
+
+            cant_generados++;
 
             visitados[j] = true;
             padre[j] = aux;
@@ -371,7 +413,10 @@ void C_busquedas::BFS(void){
 
       }
 
+
     }
+
+    visitados[aux] = false;
 
   }
 
@@ -399,5 +444,17 @@ void C_busquedas::BFS(void){
   cout << distancia << endl;
   cout << endl;
 
+  cout << "> Nodos generados" << endl;
+  cout << "-------------------" << endl;
+  cout << cant_generados << endl;
+  cout << endl;
+
+  cout << "> Nodos analizados" << endl;
+  cout << "-------------------" << endl;
+  cout << cant_analizados << endl;
+  cout << endl;
+
+
 
 };
+

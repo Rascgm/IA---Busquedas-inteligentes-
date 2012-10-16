@@ -32,6 +32,7 @@ class C_busquedas{
     void b_heuristica(void);
 
     void BFS(void);
+    bool comprobar_camino(int* vect,int actual,int hijo,int inicial);
 
 
    // METODOS TESTS
